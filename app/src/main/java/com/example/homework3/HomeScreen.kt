@@ -3,6 +3,8 @@ package com.example.homework3
 import android.content.Context
 import android.net.Uri
 import android.provider.CalendarContract
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
@@ -134,6 +136,15 @@ fun MessageCard(msg: Message) {
                 modifier = Modifier.size(40.dp)
                     .padding(0.dp,10.dp,0.dp,10.dp)
                     .clip(CircleShape) // Specify the size as needed
+            )
+        }?: run {
+            Image(
+                painter = painterResource(R.drawable.kermit),
+                contentDescription = "Default Profile Picture",
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(0.dp, 10.dp, 0.dp, 10.dp)
+                    .clip(CircleShape)
             )
         }
 

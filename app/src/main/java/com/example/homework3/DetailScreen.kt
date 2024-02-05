@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,7 +29,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -114,7 +118,21 @@ fun DetailScreen(navController: NavHostController) {
                 contentDescription = "Saved Image",
                 modifier = Modifier
                     .size(40.dp)
-                    .padding(0.dp,10.dp,0.dp,10.dp)
+                    .padding(0.dp, 10.dp, 0.dp, 10.dp)
+                    .clip(CircleShape)
+                    .clickable {
+                        singlePhotoPickerLauncher.launch(
+                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                        )
+                    }
+            )
+        } ?: run {
+            Image(
+                painter = painterResource(R.drawable.kermit),
+                contentDescription = "Default Profile Picture",
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(0.dp, 10.dp, 0.dp, 10.dp)
                     .clip(CircleShape)
                     .clickable {
                         singlePhotoPickerLauncher.launch(
